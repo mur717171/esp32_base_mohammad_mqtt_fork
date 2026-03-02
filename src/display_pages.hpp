@@ -13,7 +13,7 @@
  * @param battery Reference to the Adafruit_MAX17048 battery object (required for debug output)
  * @note Do not delete, do not modify, if you break the WiFi connection, this will tell you.
  */
-void showDebugPage(Adafruit_ST7789 &display, GFXcanvas16 &canvas, Adafruit_MAX17048 &battery);
+void showDebugPage(Adafruit_ST7789 &display, GFXcanvas16 &canvas, Adafruit_MAX17048 &battery, uint8_t orientation);
 
 /**
  * @brief Iterates the pages on the frotend loop().
@@ -23,6 +23,14 @@ void showDebugPage(Adafruit_ST7789 &display, GFXcanvas16 &canvas, Adafruit_MAX17
  *  unless you know what you're doing.
  */
 void swapPages(uint8_t &current_page, const uint8_t num_pages);
+
+/**
+ * @brief Iterates the orientations on the frotend loop().
+ * @param current_page uint8_t for the current orientation
+ * @note Do not delete, do not modify (unless necessary, it's easier just to mess with the current_page parameter)
+ *  unless you know what you're doing.
+ */
+void swapOrientation(uint8_t &current_orientation);
 
 /**
  * @brief Shows an example page that demonstrates the important page methods on the included display,

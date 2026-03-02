@@ -31,6 +31,7 @@ Adafruit_MAX17048 battery;
 // Define the number of pages here:
 const uint8_t num_pages = 2;
 uint8_t current_page = 1;
+uint8_t current_orientation = 1;
 
 void setup() {
   delay(100);
@@ -53,8 +54,10 @@ void setup() {
 void loop() {
   neopixel.setPixelColor(0, neopixel.Color(0,255,0));
   neopixel.show();
+  // User Input Handling (Button D0 maps to changing pages, D1 maps to changing orientation)
   swapPages(current_page, num_pages);
-  if (current_page == 1) showDebugPage(display, canvas, battery);
+  swapOrientation(current_orientation);
+  if (current_page == 1) showDebugPage(display, canvas, battery, current_orientation);
   if (current_page == 2) showExamplePage(display, canvas);
 
   // Do not delete, do not edit.

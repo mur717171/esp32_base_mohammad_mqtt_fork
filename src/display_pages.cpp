@@ -1,7 +1,8 @@
 #include "display_pages.hpp"
 
-void showDebugPage(Adafruit_ST7789 &display, GFXcanvas16 &canvas, Adafruit_MAX17048 &battery) {
+void showDebugPage(Adafruit_ST7789 &display, GFXcanvas16 &canvas, Adafruit_MAX17048 &battery, uint8_t orientation) {
     canvas.setFont(NULL);
+    canvas.setRotation(orientation);
     canvas.fillScreen(ST77XX_BLACK);
     canvas.setCursor(0, 17);
     canvas.setTextColor(ST77XX_RED);
@@ -43,6 +44,15 @@ void swapPages(uint8_t &current_page, const uint8_t num_pages) {
   
   if (now != last && (last = now) == LOW) {
     current_page = (current_page % num_pages) + 1;
+  }
+}
+
+void swapOrientation(uint8_t &current_orientation) {
+   static bool last = LOW;
+  bool now = digitalRead(2);
+  
+  if (now != last && (last = now) == HIGH) {
+    current_orientation = (current_orientation % 4) + 1;
   }
 }
 
