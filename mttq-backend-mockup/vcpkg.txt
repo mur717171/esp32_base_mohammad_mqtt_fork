@@ -1,0 +1,6 @@
+# vcpkg dependencies file
+# Run: vcpkg install --triplet x64-windows @vcpkg.txt
+
+mosquittopp:x64-windows
+nlohmann-json:x64-windows
+openssl:x64-windows

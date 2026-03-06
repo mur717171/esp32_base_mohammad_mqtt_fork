@@ -1,0 +1,10 @@
+^C:\USERS\MOHAMMED IBRAHIM\E\QTTP\FEATUREBRANCH\BACKEND\BUILD\CMAKEFILES\89D36802283ED6DE9FC04940CB7E90C9\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Mohammed Ibrahim/e/qttp/featurebranch/backend" "-BC:/Users/Mohammed Ibrahim/e/qttp/featurebranch/backend/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/Mohammed Ibrahim/e/qttp/featurebranch/backend/build/mqtt_printer_client.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

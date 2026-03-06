@@ -1,0 +1,69 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.26100 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\glzr.io\\GlazeWM\\\\cli"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Program Files\\glzr.io\\Zebar\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Users\\Mohammed Ibrahim\\.cargo\\bin"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Programs\\Python\\Python314\\Scripts\\"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Programs\\Python\\Python314\\"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Microsoft\\WinGet\\Packages\\sxyazi.yazi_Microsoft.Winget.Source_8wekyb3d8bbwe\\yazi-x86_64-pc-windows-msvc"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\Git\\cmd\\"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GNU.Nano_Microsoft.Winget.Source_8wekyb3d8bbwe"
+        - "C:\\Program Files\\Git\\usr\\bin"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Microsoft\\WinGet\\Packages\\marlocarlo.psmux_Microsoft.Winget.Source_8wekyb3d8bbwe"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Microsoft\\WinGet\\Packages\\JesseDuffield.Lazydocker_Microsoft.Winget.Source_8wekyb3d8bbwe"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Kubernetes.kubectl_Microsoft.Winget.Source_8wekyb3d8bbwe"
+        - "C:\\Users\\Mohammed Ibrahim\\.dotnet\\tools"
+        - "C:\\Users\\Mohammed Ibrahim\\AppData\\Local\\Microsoft\\WinGet\\Packages\\marlocarlo.pstop_Microsoft.Winget.Source_8wekyb3d8bbwe"
+        - "C:\\vcpkg"
