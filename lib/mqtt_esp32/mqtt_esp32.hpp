@@ -54,6 +54,14 @@ public:
      * @param topic Topic string (supports wildcards like "device/+/report")
      */
     void subscribe(const char* topic);
+
+    /**
+     * @brief Publish a message to an MQTT topic
+     * @param topic Topic string to publish to
+     * @param payload Message payload
+     * @return true if publish successful
+     */
+    bool publish(const char* topic, const char* payload);
     
     /**
      * @brief Get the latest printer data
@@ -65,7 +73,7 @@ public:
      * @brief Check if connected to broker
      * @return true if connected
      */
-    bool isConnected() const;
+    bool isConnected();
     
     /**
      * @brief Register callback for when printer data is updated

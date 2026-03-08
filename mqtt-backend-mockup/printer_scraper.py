@@ -1,6 +1,7 @@
 ﻿import paho.mqtt.client as mqtt
 import json
 import ssl
+import argparse
 from paho.mqtt.enums import CallbackAPIVersion
 
 """
@@ -11,19 +12,33 @@ Bambu Lab Printer MQTT Scraper (Python)
    - Successfully parses JSON data from fake_printer.py simulator
    - Successfully receives data from real Bambu Lab X1C printer (10.10.2.20:8883)
    - Handles both TLS and plain MQTT connections
+
+Usage:
+  python printer_scraper.py --broker local      # Connect to localhost (default)
+  python printer_scraper.py --broker hivemq     # Connect to broker.hivemq.com (for Wokwi)
 """
 
+# --- PARSE COMMAND LINE ARGUMENTS ---
+parser = argparse.ArgumentParser(description="Bambu Lab Printer MQTT Scraper")
+parser.add_argument(
+    "--broker",
+    choices=["local", "hivemq"],
+    default="local",
+    help="MQTT broker to use (default: local)"
+)
+args = parser.parse_args()
+
 # --- CONFIGURATION ---
-# Direct Printer Connection (Commented Out for Testing)
-# PRINTER_IP = "10.10.2.20" 
-# PORT = 8883  # Secure MQTT Port
-# ACCESS_CODE = "bc245185"  # <--- Put your 8-digit LAN code here
+if args.broker == "hivemq":
+    BROKER_HOST = "broker.hivemq.com"
+    PORT = 1883
+    print("🌐 Using HiveMQ public broker (broker.hivemq.com)")
+else:
+    BROKER_HOST = "localhost"
+    PORT = 1883
+    print("🖥️  Using local Mosquitto broker (localhost)")
 
-# Local Mosquitto Broker (Plain MQTT, no TLS)
-BROKER_HOST = "localhost"
-PORT = 1883  # Plain MQTT port
-ACCESS_CODE = ""  # No auth needed for local broker
-
+ACCESS_CODE = ""  # No auth needed for local broker or HiveMQ public
 TOPIC_FILTER = "device/#"  # Catches device/<serial_number>/report
 
 def on_connect(client, userdata, flags, reason_code, properties):

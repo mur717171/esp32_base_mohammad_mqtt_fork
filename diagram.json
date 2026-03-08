@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "author": "Mohammed Ibrahim",
+  "title": "ESP32 Printer Monitor",
+  "description": "MQTT-connected printer status display",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp32",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-serial-monitor",
+      "id": "serial-monitor",
+      "top": 300,
+      "left": 0,
+      "attrs": { "display": "auto" }
+    }
+  ],
+  "connections": [
+    ["esp32:43", "serial-monitor:RX", "", []],
+    ["esp32:44", "serial-monitor:TX", "", []]
+  ]
+}

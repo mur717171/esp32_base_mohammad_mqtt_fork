@@ -2,17 +2,38 @@ import paho.mqtt.client as mqtt
 import json
 import time
 import random
+import argparse
 from paho.mqtt.enums import CallbackAPIVersion
 
 """
 Fake Bambu Lab Printer Simulator
-Publishes realistic printer data to local mosquitto broker for testing
+Publishes realistic printer data to MQTT broker for testing
 
-✅ TESTED & WORKING - Successfully publishes fake printer data to mosquitto
+✅ TESTED & WORKING - Successfully publishes fake printer data
+
+Usage:
+  python fake_printer.py --broker local      # Connect to localhost (default)
+  python fake_printer.py --broker hivemq     # Connect to broker.hivemq.com (for Wokwi)
 """
 
+# --- PARSE COMMAND LINE ARGUMENTS ---
+parser = argparse.ArgumentParser(description="Fake Bambu Lab Printer Simulator")
+parser.add_argument(
+    "--broker",
+    choices=["local", "hivemq"],
+    default="local",
+    help="MQTT broker to use (default: local)"
+)
+args = parser.parse_args()
+
 # --- CONFIGURATION ---
-BROKER_HOST = "localhost"
+if args.broker == "hivemq":
+    BROKER_HOST = "broker.hivemq.com"
+    print("🌐 Using HiveMQ public broker (broker.hivemq.com)")
+else:
+    BROKER_HOST = "localhost"
+    print("🖥️  Using local Mosquitto broker (localhost)")
+
 PORT = 1883
 PUBLISH_INTERVAL = 2  # seconds between publishes
 DEVICE_SERIAL = "abc123def456"  # Fake printer serial number

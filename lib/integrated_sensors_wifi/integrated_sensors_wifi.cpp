@@ -12,7 +12,14 @@ void buttonSetup() {
 
 bool wifiSetup(const char* ssid, const char* password) {
     WiFi.mode(WIFI_STA);
+    
+#ifdef WOKWI_BUILD
+    // Wokwi-GUEST broadcasts on channel 6 - specify to skip WiFi scan and connect faster
+    WiFi.begin(ssid, password, 6);
+#else
+    // Real hardware - auto-scan for available WiFi channels
     WiFi.begin(ssid, password);
+#endif
 
     // Attempt 20 times to connect to the wireless network:
     int attempts = 0;

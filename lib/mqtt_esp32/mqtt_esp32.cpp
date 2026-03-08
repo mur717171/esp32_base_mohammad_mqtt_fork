@@ -7,7 +7,7 @@ MqttEsp32::MqttEsp32(const char* broker_host, int broker_port, const char* clien
       client_id_(client_id),
       wifi_client_(),
       mqtt_client_(wifi_client_) {
-    Serial.println("[MQTT] MqttEsp32 instance created");
+    // Constructor runs before Serial.begin() in setup(), so no Serial output here
 }
 
 MqttEsp32::~MqttEsp32() {
@@ -50,7 +50,7 @@ bool MqttEsp32::disconnect() {
     return false;
 }
 
-bool MqttEsp32::isConnected() const {
+bool MqttEsp32::isConnected() {
     return mqtt_client_.connected();
 }
 
@@ -63,6 +63,15 @@ void MqttEsp32::subscribe(const char* topic) {
     Serial.print("[MQTT] Subscribing to: ");
     Serial.println(topic);
     mqtt_client_.subscribe(topic);
+}
+
+bool MqttEsp32::publish(const char* topic, const char* payload) {
+    if (!isConnected()) {
+        return false;
+    }
+    mqtt_client_.beginMessage(topic);
+    mqtt_client_.print(payload);
+    return mqtt_client_.endMessage();
 }
 
 void MqttEsp32::update() {
