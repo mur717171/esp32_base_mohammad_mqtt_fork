@@ -294,4 +294,73 @@ you should see it publishing
 
 i saw it publishing, so we should be good. more debug might be necessary when we're using the mcu
 
+push 2 done ---------------------
 
+
+
+
+now i need to look into optimizing this for memory
+
+
+pio run -e adafruit_feather_esp32s3_reversetft-wokwi -v 2>&1 | Select-String "RAM|Flash|Memory"
+
+
+
+RAM:   [=         ]  14.1% (used 46076 bytes from 327680 bytes)
+Flash: [=====     ]  52.7% (used 760229 bytes from 1441792 bytes)
+
+
+tldr ram at 14% and flash at 52.7 % 
+
+when going into prod - look out for real bambu mqtt payloads being kb and that being large or the chip
+
+we might need to mess with StatisJsonDocument and bump it to 2048 to fix that or
+use DynamicJsonDocument when parsing the printer data
+
+
+
+im gonna do pio run -e adafruit_feather_esp32s3_reversetft-usbhardware -v 2>&1 | Select-String "RAM|Flash|Memory"
+
+to compare against the main build that has the display integrated into it (aden branch w orientation)
+(no mqtt in this one, it has everything from before though)
+
+RAM:   [=         ]  14.1% (used 46084 bytes from 327680 bytes)
+Flash: [=====     ]  54.3% (used 783157 bytes from 1441792 bytes)
+
+
+comparison:
+
+
+wokwi:
+
+RAM:   [=         ]  14.1% (used 46076 bytes from 327680 bytes)
+Flash: [=====     ]  52.7% (used 760229 bytes from 1441792 bytes)
+
+
+
+
+
+main env:
+
+RAM:   [=         ]  14.1% (used 46084 bytes from 327680 bytes)
+Flash: [=====     ]  54.3% (used 783157 bytes from 1441792 bytes)
+
+im realizing that it might be pointless to compare because the first one ignores display sensors and the second one is just pre mqtt
+
+Flash breakdown:
+
+.flash.text (code): 548KB ← libraries + your code
+.flash.rodata_dummy: 589KB ← padding/alignment (wasted space essentially)
+.flash.rodata (constants): 122KB ← library constants
+Total: ~760KB used
+RAM breakdown:
+
+.dram0.data: 22KB ← initialized data
+.dram0.bss: 23KB ← uninitialized data
+Total: ~46KB used
+
+for both libs are main consumer
+
+
+my judgement is that mqtt has minimal hardware impact but that bambu data size from the real printer
+may be a problem if the data is substantial in kbs
